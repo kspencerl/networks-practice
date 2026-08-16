@@ -17,15 +17,17 @@
 
 1. No passo 2 da tarefa, o que aconteceu quando você enviou uma mensagem com o servidor desligado? Compare com o que aconteceria em TCP e explique a diferença observada, relacionando com o conceito de "sem conexão".
 
+- R: Quando o servidor foi desligado, segui conseguindo enviar mensagens normalmente, porém sem chegar ao servidor e sem o cliente saber que a mensagem não foi recebida. Comparando com o TCP, com este último receberíamos mensagem de conexão rejeitada e não conseguiríamos mais realizar o envio de mensagens, visto que este protocolo exige uma conexão estabelecida. Já com o UDP não, visto que este protocolo não possui essa exigência.
 
 2. Cite **dois exemplos de aplicações reais** que usam UDP e explique, para cada uma, por que a confiabilidade do TCP não é essencial (ou até atrapalharia).
 
+2. Cite dois exemplos de aplicações reais que usam UDP e explique, para cada uma, por que a confiabilidade do TCP não é essencial (ou até atrapalharia).
+
+- R: DNS utiliza UDP porque precisa de respostas rápidas para resolver nomes em endereços IP. O TCP seria mais lento devido ao handshake. Se uma resposta não chega, o cliente simplesmente refaz a consulta. O segundo exemplo seriam as transmissões ao vivo (áudio/vídeo) porque a prioridade é a baixa latência, e retransmitir pacotes perdidos atrasaria a reprodução, então é melhor perder alguns pacotes do que travar o fluxo contínuo.
 
 3. No código, o servidor UDP não mantém nenhum registro de "quem está conectado". Isso seria possível de implementar? O que mudaria na arquitetura da aplicação?
 
-
-
-
+- R: Sim, seria possível implementar um registro de clientes, armazenando os endereços e portas dos que já enviaram mensagens. Isso permitiria manter informações de sessão, mas mudaria a arquitetura, o servidor deixaria de ser totalmente sem estado e precisaria gerenciar uma tabela de clientes ativos, adicionando complexidade semelhante ao que o TCP já faz nativamente.
 
 ## PARTE C
 
