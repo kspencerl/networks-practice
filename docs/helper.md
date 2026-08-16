@@ -7,8 +7,8 @@ Use esse `OFFSET` somado à porta-base de **cada parte**, em todos os arquivos (
 
 | Parte                  | Porta-base | Sua porta        |
 |------------------------|------------|------------------|
-| A — TCP                | 5000       | `5000 + OFFSET`  |
-| B — UDP                | 5001       | `5001 + OFFSET`  |
-| C — Multicast          | 4446       | `4446 + OFFSET`  |
-| D — WebSocket (Java)   | 8887       | `8887 + OFFSET`  |
-| D — WebSocket (Python) | 8888       | `8888 + OFFSET`  |
+| A — TCP                | 5000       | 5094  |
+| B — UDP                | 5001       | 5095  |
+| C — Multicast          | 4446       | 4540  |
+| D — WebSocket (Java)   | 8887       | 8981  |
+| D — WebSocket (Python) | 8888       | 8982  |
