@@ -31,6 +31,18 @@
 
 ## PARTE C
 
+1. Qual é a diferença fundamental entre enviar a mesma mensagem para 3 clientes usando **unicast repetido 3 vezes** e enviar **uma única vez** via multicast? Pense em termos de tráfego de rede.
+
+- R: A diferença entre eles é que no unicast repetido o servidor envia 3 cópias idênticas da mensagem, uma para cada cliente. Isso gera tráfego proporcional ao número de destinatários (mais pacotes circulando na rede). Já no multicast, o servidor envia apenas uma vez para o grupo multicast. A rede se encarrega de entregar a mensagem a todos os clientes inscritos. Assim o tráfego é muito menor, pois há apenas um envio, independentemente do número de clientes. Dessa maneira, o multicast é mais eficiente e escalável, especialmente quando há muitos receptores.
+
+2. O que é o **TTL** (time-to-live) configurado no socket multicast e por que ele é importante para controlar o alcance dos pacotes na rede?
+
+- R: O TTL é um valor que controla até onde um pacote multicast pode se propagar pela rede. Ele funciona como um limite para a quantidade de roteadores que o pacote pode atravessar. Um TTL baixo restringe o pacote a uma área menor, enquanto um TTL maior permite que ele alcance redes mais distantes. Isso é importante para evitar que os pacotes multicast sejam enviados para redes onde não são necessários, reduzindo o tráfego e controlando o alcance da comunicação.
+
+3. Se um dos clientes ficar temporariamente offline e voltar depois, ele recebe os avisos que perdeu? Por quê? Relacione com a arquitetura de comunicação em grupo.
+
+- R: Não. Se um dos clientes ficar temporariamente offline, ele não vai receber os avisos enviados durante esse período. Isso acontece porque o multicast é uma comunicação em grupo baseada em UDP, em que as mensagens são enviadas aos membros que estão inscritos no grupo e disponíveis naquele momento. Enquanto o cliente estiver offline, ele não recebe os pacotes enviados e quando voltar e se inscrever novamente no grupo receberá apenas as novas mensagens. As mensagens perdidas não são armazenadas nem retransmitidas automaticamente, pois o multicast não mantém um histórico das mensagens para clientes que estavam offline.
+
 ## PARTE D
 
 
