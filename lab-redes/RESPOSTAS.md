@@ -45,5 +45,14 @@
 
 ## PARTE D
 
+1. O WebSocket começa com uma requisição HTTP contendo o cabeçalho `Upgrade: websocket`. O que exatamente "muda" na conexão depois que esse handshake é concluído?
 
-COLOCAR Evidências de teste (prints de tela)
+- R: Quando o servidor aceita o cabeçalho Upgrade: websocket, a conexão deixa de ser tratada como HTTP tradicional e passa a ser um canal contínuo e bidirecional. Isso significa que não existe mais o modelo de requisição e resposta do HTTP, mas sim uma troca de mensagens em tempo real usando frames próprios do WebSocket. O TCP continua sendo a base, mas agora a comunicação é interativa e persistente, permitindo que cliente e servidor enviem dados a qualquer momento.
+
+2. Compare o mural via WebSocket (Parte D) com o aviso via Multicast (Parte C). Ambos entregam uma mensagem a vários destinatários — qual a diferença na forma como cada um descobre e alcança os destinatários?
+
+- R: No mural via WebSocket, cada cliente abre uma conexão direta com o servidor, e o servidor mantém a lista de conexões ativas para enviar as mensagens a todos. Já no multicast, o servidor envia uma única mensagem para um endereço de grupo específico e a própria rede replica essa mensagem para todos os dispositivos que se inscreveram nesse grupo. Assim no WebSocket o servidor controla quem recebe, enquanto no multicast a entrega é feita pela infraestrutura de rede para todos que se juntaram ao grupo.
+
+3. Por que o WebSocket é mais adequado do que TCP "cru" (como o da Parte A) para este cenário de mural em tempo real, mesmo os dois sendo, no fundo, conexões TCP contínuas?
+
+- R: Embora ambos usem TCP como base, o WebSocket já oferece um protocolo padronizado para mensagens em tempo real, com suporte nativo em navegadores e bibliotecas. Ele já define como abrir, manter e encerrar conexões, além de incluir recursos de controle como ping/pong para verificar se a conexão continua ativa. Se fosse usado apenas TCP puro, cada aplicação teria que criar seu próprio protocolo de mensagens. O WebSocket simplifica essa troca contínua de dados, sendo uma a escolha ideal para um mural de avisos em tempo real.
